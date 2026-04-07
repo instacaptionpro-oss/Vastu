@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>કૃષ્ણાશ્રય - વાસ્તુ પૂજન</title>
+<title>Vastu Pujan</title>
+
+<!-- WHATSAPP LINK PREVIEW SETTINGS -->
+<meta property="og:title" content="Vastu Pujan">
+<meta property="og:description" content="Vastu Pujan - Samast Zalawadiya Parivar Tarfthi">
+<meta property="og:image" content="https://vastu-1-wtmj.onrender.com/house.jpg">
+<meta property="og:url" content="https://vastu-1-wtmj.onrender.com/">
+<meta property="og:type" content="website">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -88,6 +96,8 @@
     letter-spacing: 2px;
     opacity: 0;
     animation: pulse-hint 2s ease 2.5s infinite;
+    text-align: center;
+    line-height: 1.8;
   }
   @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes pulse-hint { 0%,100% { opacity: 0.4; } 50% { opacity: 1; color: #d4af37; } }
@@ -141,7 +151,7 @@
     width: 100%; height: 100%;
     transform-style: preserve-3d;
     animation: house-float 4s ease-in-out infinite, house-intro 1.5s ease both;
-    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1); /* Smooth zoom transition */
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     position: relative;
   }
   
@@ -154,7 +164,6 @@
     to { opacity: 1; }
   }
 
-  /* House faces */
   .house-face {
     position: absolute;
     width: 100%; height: 100%;
@@ -168,7 +177,6 @@
     object-fit: cover;
     object-position: center top;
   }
-
   .face-front { transform: translateZ(60px); }
 
   /* DOOR CLICK ZONE */
@@ -222,7 +230,6 @@
     50% { transform: translateY(-6px); opacity: 1; }
   }
 
-  /* Ground shadow */
   .ground-shadow {
     width: min(280px, 70vw);
     height: 20px;
@@ -244,10 +251,8 @@
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
-  .door-opening.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .door-opening.active { opacity: 1; pointer-events: all; }
+  
   .door-split-left, .door-split-right {
     position: absolute;
     top: 0; width: 50%; height: 100%;
@@ -278,7 +283,48 @@
     50% { box-shadow: 0 0 40px #d4af37, 0 0 80px #ff9500; }
   }
 
-  /* CARD MODAL */
+  /* HOST NAMES SCREEN */
+  #host-names {
+    position: fixed; inset: 0; z-index: 250;
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: rgba(10, 10, 10, 0.95);
+    opacity: 0; transition: opacity 1s ease;
+    padding: 20px;
+    text-align: center;
+  }
+  #host-names.show {
+    display: flex; opacity: 1;
+  }
+  .host-welcome {
+    font-size: clamp(14px, 4vw, 18px);
+    color: #a08040;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    opacity: 0; transform: translateY(20px);
+    transition: all 1s ease;
+  }
+  .host-name-box {
+    margin: 15px 0;
+    opacity: 0; transform: translateY(20px);
+    transition: all 1s ease;
+  }
+  .host-name-box.show-name, .host-welcome.show-name {
+    opacity: 1; transform: translateY(0);
+  }
+  .name-guj {
+    font-size: clamp(20px, 6vw, 28px);
+    color: #d4af37;
+    margin-bottom: 4px;
+  }
+  .name-eng {
+    font-size: clamp(12px, 3.5vw, 16px);
+    color: #f5e6c8;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+  }
+
+  /* FINAL CARD MODAL */
   #card-modal {
     position: fixed; inset: 0; z-index: 300;
     display: none;
@@ -356,13 +402,8 @@
 
   <div class="house-scene" id="houseScene">
     <div class="house-wrapper" id="houseWrapper">
-      <!-- Front face of the House -->
       <div class="house-face face-front">
-        
-        <!-- PUT YOUR HOUSE IMAGE HERE -->
         <img src="house.jpg" alt="Our New House">
-        
-        <!-- This is the clickable door box -->
         <div class="door-zone" onclick="openDoor()"></div>
       </div>
     </div>
@@ -376,27 +417,42 @@
   </div>
 </div>
 
-<!-- DOOR OPENING ANIMATION (The Black Doors) -->
+<!-- DOOR OPENING ANIMATION -->
 <div class="door-opening" id="doorOpening">
   <div class="door-split-left"></div>
   <div class="door-glow"></div>
   <div class="door-split-right"></div>
 </div>
 
-<!-- FINAL CARD MODAL -->
-<div id="card-modal">
-  <!-- JavaScript will inject particles here -->
-  <div class="card-container">
-    
-    <!-- PUT YOUR INVITATION CARD IMAGE HERE -->
-    <img src="card.jpg" class="card-page" alt="Invitation Details">
-    
+<!-- HOST NAMES SEQUENCE -->
+<div id="host-names">
+  <div class="host-welcome" id="name0">॥ સ્નેહાધીન નિમંત્રક ॥</div>
+  
+  <div class="host-name-box" id="name1">
+    <div class="name-guj">કાંતિભાઈ લાલજીભાઈ ઝાલાવાડિયા</div>
+    <div class="name-eng">Kantibhai Laljibhai Zalawadiya</div>
+  </div>
+  
+  <div class="host-name-box" id="name2">
+    <div class="name-guj">સંજયભાઈ કાંતિભાઈ ઝાલાવાડિયા</div>
+    <div class="name-eng">Sanjaybhai Kantibhai Zalawadiya</div>
+  </div>
+  
+  <div class="host-name-box" id="name3">
+    <div class="name-guj">વિજયભાઈ કાંતિભાઈ ઝાલાવાડિયા</div>
+    <div class="name-eng">Vijaybhai Kantibhai Zalawadiya</div>
   </div>
 </div>
 
-<!-- THE JAVASCRIPT ENGINE (This makes everything work!) -->
+<!-- FINAL CARD MODAL -->
+<div id="card-modal">
+  <div class="card-container">
+    <img src="card.jpg" class="card-page" alt="Invitation Details">
+  </div>
+</div>
+
+<!-- THE JAVASCRIPT ENGINE -->
 <script>
-  // 1. Move from Intro to House
   function enterScene() {
     const intro = document.getElementById('intro');
     intro.classList.add('hide');
@@ -407,42 +463,56 @@
     }, 800);
   }
 
-  // 2. The Zoom & Enter Door Animation
   function openDoor() {
     const wrapper = document.getElementById('houseWrapper');
     const opening = document.getElementById('doorOpening');
+    const namesScreen = document.getElementById('host-names');
     const modal = document.getElementById('card-modal');
 
-    // Stop floating animation and ZOOM IN towards the door
+    // Zoom into the house
     wrapper.style.animation = 'none'; 
-    // Scale up massively to look like the camera is flying into the door
     wrapper.style.transform = 'scale(5) translateY(20px)'; 
 
-    // Wait for zoom to almost finish, then show the splitting doors
+    // Show doors and split them
     setTimeout(() => {
-      opening.classList.add('active'); // Shows the black doors with golden glow
+      opening.classList.add('active'); 
       
-      // Open the splitting doors
       setTimeout(() => {
         opening.classList.add('open');
         
-        // Show the Final Card
+        // Start the Names Sequence
         setTimeout(() => {
-          modal.classList.add('show');
-          createParticles(); // Spawn golden sparkles!
-        }, 800);
+          namesScreen.classList.add('show');
+          
+          // Fade in names one by one
+          setTimeout(() => { document.getElementById('name0').classList.add('show-name'); }, 400);
+          setTimeout(() => { document.getElementById('name1').classList.add('show-name'); }, 1200);
+          setTimeout(() => { document.getElementById('name2').classList.add('show-name'); }, 2200);
+          setTimeout(() => { document.getElementById('name3').classList.add('show-name'); }, 3200);
+          
+          // Wait, then fade out the names and show the final card
+          setTimeout(() => {
+            namesScreen.style.opacity = '0'; 
+            
+            setTimeout(() => {
+              namesScreen.style.display = 'none';
+              modal.classList.add('show');
+              createParticles();
+            }, 1000);
+            
+          }, 6500); // Amount of time the names stay on screen
+
+        }, 800); // Delay after doors split
         
-      }, 500);
-    }, 1200);
+      }, 500); // Delay to open split doors
+    }, 1200); // Delay for the zoom animation
   }
 
-  // 3. Create Magical Golden Particles around the card
   function createParticles() {
     const modal = document.getElementById('card-modal');
     for(let i = 0; i < 30; i++) {
       let p = document.createElement('div');
       p.className = 'particle';
-      // Randomize positions and speeds
       p.style.setProperty('--px', Math.random() * 100 + '%');
       p.style.setProperty('--py', (Math.random() * 100 + 20) + '%');
       p.style.setProperty('--pdur', (Math.random() * 3 + 2) + 's');
